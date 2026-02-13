@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Aastha ❤️</title>
+
+<style>
+body{
+margin:0;
+font-family:Georgia, serif;
+background:linear-gradient(#FFF6F0,#F6D1D8);
+overflow-x:hidden;
+}
+
+/* Sections */
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+text-align:center;
+padding:20px;
+}
+
+/* Buttons */
+.btn{
+padding:14px 28px;
+background:#D4AF37;
+border:none;
+border-radius:30px;
+color:white;
+font-size:18px;
+cursor:pointer;
+}
+
+/* Floating Hearts */
+.heart{
+position:fixed;
+bottom:-20px;
+animation:floatUp 6s linear infinite;
+opacity:.7;
+pointer-events:none;
+}
+@keyframes floatUp{
+0%{transform:translateY(0)}
+100%{transform:translateY(-110vh);opacity:0}
+}
+
+/* ================= PROPOSAL ================= */
+
+.proposal-text{
+font-size:26px;
+margin-bottom:20px;
+}
+
+.proposal-buttons{
+display:flex;
+justify-content:center;
+gap:40px;
+}
+
+.no-btn{
+position:fixed;
+top:70%;
+left:60%;
+}
+
+/* Burst Hearts */
+.burst-heart{
+position:fixed;
+font-size:26px;
+animation:burst 1.2s ease forwards;
+pointer-events:none;
+}
+@keyframes burst{
+0%{transform:scale(0) translateY(0);opacity:1;}
+100%{transform:scale(2) translateY(-120px);opacity:0;}
+}
+
+/* ================= ENVELOPE ================= */
+
+.envelope-container{
+width:320px;
+cursor:pointer;
+margin:40px 0;
+}
+
+.envelope{
+background:white;
+height:180px;
+border-radius:14px;
+position:relative;
+box-shadow:0 8px 25px rgba(0,0,0,.2);
+}
+
+.seal{
+width:36px;
+height:36px;
+background:radial-gradient(circle,#d63333,#8b0000);
+border-radius:50%;
+position:absolute;
+top:78px;
+left:50%;
+transform:translateX(-50%);
+transition:.8s;
+}
+
+.envelope-container.open .seal{
+transform:translateX(-50%) scale(0);
+opacity:0;
+}
+
+.flap{
+height:90px;
+background:linear-gradient(#f6d6dc,#efc5cd);
+clip-path:polygon(0 0,100% 0,50% 100%);
+transform-origin:top;
+transition:.9s;
+}
+
+.envelope-container.open .flap{
+transform:rotateX(180deg);
+}
+
+/* Paper */
+.paper{
+position:absolute;
+left:14px;
+right:14px;
+top:75px;
+background:#fffdf7;
+border-radius:10px;
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+
+opacity:0;
+pointer-events:none;
+transform:translateY(130%);
+transition:1s;
+}
+
+/* Slide Out */
+.envelope-container.open .paper{
+opacity:1;
+pointer-events:auto;
+transform:translateY(-320px);
+}
+
+/* Expanded */
+.envelope-container.expanded .paper{
+position:fixed;
+top:50%;
+left:50%;
+transform:translate(-50%, -50%);
+width:90vw;
+max-width:700px;
+max-height:80vh;
+overflow-y:auto;
+z-index:1000;
+}
+
+.paper-content{
+padding:45px;
+font-size:18px;
+line-height:2;
+color:#333;
+}
+
+/* ================= GIFT ================= */
+
+.gift{
+width:140px;
+height:140px;
+background:#D4AF37;
+border-radius:20px;
+cursor:pointer;
+position:relative;
+}
+
+.gift:before{
+content:"";
+width:100%;
+height:20px;
+background:white;
+position:absolute;
+top:60px;
+}
+
+.surprise{
+display:none;
+margin-top:20px;
+font-size:22px;
+}
+
+/* ================= CATS ================= */
+
+.cat{
+position:fixed;
+bottom:0;
+width:85px;
+height:85px;
+border-radius:50%;
+animation:bounce 4s infinite;
+pointer-events:none;
+}
+
+.white{left:20px;background:white;}
+.ginger{right:20px;background:#f4a261;transform:scaleX(-1);}
+
+.eye{
+width:9px;height:9px;background:black;border-radius:50%;
+position:absolute;top:30px;
+}
+.eye.left{left:22px}
+.eye.right{right:22px}
+
+.nose{
+width:7px;height:7px;background:pink;border-radius:50%;
+position:absolute;top:48px;left:50%;transform:translateX(-50%);
+}
+
+.tail{
+position:absolute;width:55px;height:12px;background:inherit;
+right:-35px;bottom:12px;border-radius:10px;
+animation:wag 2s infinite;
+}
+
+@keyframes wag{
+0%,100%{transform:rotate(10deg)}
+50%{transform:rotate(-10deg)}
+}
+
+@keyframes bounce{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-10px)}
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- PROPOSAL -->
+<section>
+<h1>For Aastha ❤️</h1>
+<p class="proposal-text">Will you be my Valentine?</p>
+
+<div class="proposal-buttons">
+<button class="btn" id="yesBtn">Yes 💖</button>
+<button class="btn no-btn" id="noBtn">No 🙈</button>
+</div>
+</section>
+
+<!-- LETTER -->
+<section id="letters">
+<h2>Love Letter 💌</h2>
+
+<div class="envelope-container" onclick="toggleEnvelope(this)">
+<div class="envelope">
+<div class="seal"></div>
+<div class="flap"></div>
+
+<div class="paper">
+<div class="paper-content">
+
+My love, you've filled my world with light, and now I want to make promises that echo from my heart to yours—vows I'll keep every single day, because you deserve nothing less.
+
+I promise to love you fiercely, through every sunrise and storm, cherishing your silky hair, captivating eyes, enchanting scent, and that adorable cuteness that steals my breath. No matter what life brings, you're my priority—my partner, my home.
+
+I promise to stand by you always, supporting your dreams like you ignite mine, whether we're dancing in the kitchen or chasing adventures. I'll listen when you need me, lift you when you're weary, and celebrate every triumph, big or small.
+
+I promise our future: lazy mornings tangled together, travels hand-in-hand, building a life of laughter and love. I'll grow with you, protect our joy, and make you feel cherished beyond words.
+
+These aren't just words—they're my soul's oath. You're my forever, and I'll prove it every day.
+
+With endless love and promises kept.
+
+</div>
+</div>
+
+</div>
+</div>
+
+</section>
+
+<!-- GIFT -->
+<section>
+<h2>One Last Thing 🎁</h2>
+<div class="gift" onclick="giftReveal()"></div>
+<p class="surprise" id="finalText">Happy Valentine's Day ❤️</p>
+</section>
+
+<!-- CATS -->
+<div class="cat white" id="whiteCat">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="nose"></div>
+<div class="tail"></div>
+</div>
+
+<div class="cat ginger" id="gingerCat">
+<div class="eye left"></div>
+<div class="eye right"></div>
+<div class="nose"></div>
+<div class="tail"></div>
+</div>
+
+<script>
+
+const whiteCat=document.getElementById("whiteCat");
+const gingerCat=document.getElementById("gingerCat");
+const yesBtn=document.getElementById("yesBtn");
+const noBtn=document.getElementById("noBtn");
+
+let noClickCount=0;
+
+/* Scroll */
+function goLetters(){
+document.getElementById("letters").scrollIntoView({behavior:"smooth"});
+}
+
+/* Envelope */
+function toggleEnvelope(clicked){
+let isOpen=clicked.classList.contains("open");
+let isExpanded=clicked.classList.contains("expanded");
+
+if(isExpanded){
+clicked.classList.remove("expanded","open");
+return;
+}
+if(isOpen){
+clicked.classList.add("expanded");
+return;
+}
+
+clicked.classList.add("open");
+}
+
+/* Gift */
+function giftReveal(){
+document.getElementById("finalText").style.display="block";
+}
+
+/* Floating Hearts */
+setInterval(()=>{
+let h=document.createElement("div");
+h.className="heart";
+h.innerHTML="❤️";
+h.style.left=Math.random()*100+"vw";
+document.body.appendChild(h);
+setTimeout(()=>h.remove(),6000);
+},800);
+
+/* NO Button */
+const noTexts=["No 🙈","Are you sure? 😢","Really sure?? 🥺","Please reconsider 💔","I'll be sad 😭","Last chance… 😔"];
+
+noBtn.addEventListener("click",()=>{
+noClickCount++;
+
+if(noClickCount<noTexts.length){
+noBtn.innerText=noTexts[noClickCount];
+}
+
+let scale=1-(noClickCount*0.15);
+if(scale<0.3)scale=0.3;
+noBtn.style.transform=`scale(${scale})`;
+
+noBtn.style.left=Math.random()*80+"vw";
+noBtn.style.top=Math.random()*80+"vh";
+
+if(noClickCount>=6){
+noBtn.style.display="none";
+}
+});
+
+/* YES Button */
+yesBtn.addEventListener("click",()=>{
+heartBurst();
+setTimeout(()=>goLetters(),800);
+});
+
+function heartBurst(){
+for(let i=0;i<18;i++){
+let heart=document.createElement("div");
+heart.className="burst-heart";
+heart.innerHTML="💖";
+heart.style.left=window.innerWidth/2+"px";
+heart.style.top=window.innerHeight/2+"px";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),1200);
+}
+}
+
+</script>
+
+</body>
+</html>
