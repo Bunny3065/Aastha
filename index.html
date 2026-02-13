@@ -84,6 +84,7 @@ pointer-events:none;
 width:320px;
 cursor:pointer;
 margin:40px 0;
+position:relative;
 }
 
 .envelope{
@@ -132,14 +133,12 @@ top:75px;
 background:#fffdf7;
 border-radius:10px;
 box-shadow:0 20px 45px rgba(0,0,0,.25);
-
 opacity:0;
 pointer-events:none;
 transform:translateY(130%);
 transition:1s;
 }
 
-/* Slide Out */
 .envelope-container.open .paper{
 opacity:1;
 pointer-events:auto;
@@ -156,7 +155,19 @@ width:90vw;
 max-width:700px;
 max-height:80vh;
 overflow-y:auto;
-z-index:1000;
+z-index:9999;
+}
+
+/* Background Dim */
+.envelope-container.expanded::before{
+content:"";
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.4);
+z-index:9998;
 }
 
 .paper-content{
@@ -164,6 +175,12 @@ padding:45px;
 font-size:18px;
 line-height:2;
 color:#333;
+}
+
+/* Hide other sections when reading */
+.envelope-container.expanded ~ section{
+opacity:0;
+pointer-events:none;
 }
 
 /* ================= GIFT ================= */
@@ -240,7 +257,6 @@ animation:wag 2s infinite;
 
 <body>
 
-<!-- PROPOSAL -->
 <section>
 <h1>For Aastha ❤️</h1>
 <p class="proposal-text">Will you be my Valentine?</p>
@@ -251,7 +267,6 @@ animation:wag 2s infinite;
 </div>
 </section>
 
-<!-- LETTER -->
 <section id="letters">
 <h2>Love Letter 💌</h2>
 
@@ -273,7 +288,7 @@ I promise our future: lazy mornings tangled together, travels hand-in-hand, buil
 
 These aren't just words—they're my soul's oath. You're my forever, and I'll prove it every day.
 
-With endless love and promises kept.
+With endless love and promises kept,
 
 </div>
 </div>
@@ -283,43 +298,23 @@ With endless love and promises kept.
 
 </section>
 
-<!-- GIFT -->
 <section>
 <h2>One Last Thing 🎁</h2>
 <div class="gift" onclick="giftReveal()"></div>
 <p class="surprise" id="finalText">Happy Valentine's Day ❤️</p>
 </section>
 
-<!-- CATS -->
-<div class="cat white" id="whiteCat">
-<div class="eye left"></div>
-<div class="eye right"></div>
-<div class="nose"></div>
-<div class="tail"></div>
-</div>
-
-<div class="cat ginger" id="gingerCat">
-<div class="eye left"></div>
-<div class="eye right"></div>
-<div class="nose"></div>
-<div class="tail"></div>
-</div>
-
 <script>
 
-const whiteCat=document.getElementById("whiteCat");
-const gingerCat=document.getElementById("gingerCat");
 const yesBtn=document.getElementById("yesBtn");
 const noBtn=document.getElementById("noBtn");
 
 let noClickCount=0;
 
-/* Scroll */
 function goLetters(){
 document.getElementById("letters").scrollIntoView({behavior:"smooth"});
 }
 
-/* Envelope */
 function toggleEnvelope(clicked){
 let isOpen=clicked.classList.contains("open");
 let isExpanded=clicked.classList.contains("expanded");
@@ -336,12 +331,10 @@ return;
 clicked.classList.add("open");
 }
 
-/* Gift */
 function giftReveal(){
 document.getElementById("finalText").style.display="block";
 }
 
-/* Floating Hearts */
 setInterval(()=>{
 let h=document.createElement("div");
 h.className="heart";
@@ -351,7 +344,6 @@ document.body.appendChild(h);
 setTimeout(()=>h.remove(),6000);
 },800);
 
-/* NO Button */
 const noTexts=["No 🙈","Are you sure? 😢","Really sure?? 🥺","Please reconsider 💔","I'll be sad 😭","Last chance… 😔"];
 
 noBtn.addEventListener("click",()=>{
@@ -373,7 +365,6 @@ noBtn.style.display="none";
 }
 });
 
-/* YES Button */
 yesBtn.addEventListener("click",()=>{
 heartBurst();
 setTimeout(()=>goLetters(),800);
@@ -395,4 +386,3 @@ setTimeout(()=>heart.remove(),1200);
 
 </body>
 </html>
-
