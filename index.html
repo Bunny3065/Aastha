@@ -21,6 +21,17 @@ align-items:center;
 justify-content:center;
 text-align:center;
 padding:20px;
+transition:.3s;
+}
+
+/* Reading Mode */
+body.reading section:not(#letters){
+opacity:0;
+pointer-events:none;
+}
+
+body.reading{
+overflow:hidden;
 }
 
 /* Buttons */
@@ -177,12 +188,6 @@ line-height:2;
 color:#333;
 }
 
-/* Hide other sections when reading */
-.envelope-container.expanded ~ section{
-opacity:0;
-pointer-events:none;
-}
-
 /* ================= GIFT ================= */
 
 .gift{
@@ -207,49 +212,6 @@ top:60px;
 display:none;
 margin-top:20px;
 font-size:22px;
-}
-
-/* ================= CATS ================= */
-
-.cat{
-position:fixed;
-bottom:0;
-width:85px;
-height:85px;
-border-radius:50%;
-animation:bounce 4s infinite;
-pointer-events:none;
-}
-
-.white{left:20px;background:white;}
-.ginger{right:20px;background:#f4a261;transform:scaleX(-1);}
-
-.eye{
-width:9px;height:9px;background:black;border-radius:50%;
-position:absolute;top:30px;
-}
-.eye.left{left:22px}
-.eye.right{right:22px}
-
-.nose{
-width:7px;height:7px;background:pink;border-radius:50%;
-position:absolute;top:48px;left:50%;transform:translateX(-50%);
-}
-
-.tail{
-position:absolute;width:55px;height:12px;background:inherit;
-right:-35px;bottom:12px;border-radius:10px;
-animation:wag 2s infinite;
-}
-
-@keyframes wag{
-0%,100%{transform:rotate(10deg)}
-50%{transform:rotate(-10deg)}
-}
-
-@keyframes bounce{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
 }
 
 </style>
@@ -316,15 +278,19 @@ document.getElementById("letters").scrollIntoView({behavior:"smooth"});
 }
 
 function toggleEnvelope(clicked){
-let isOpen=clicked.classList.contains("open");
-let isExpanded=clicked.classList.contains("expanded");
+
+let isOpen = clicked.classList.contains("open");
+let isExpanded = clicked.classList.contains("expanded");
 
 if(isExpanded){
 clicked.classList.remove("expanded","open");
+document.body.classList.remove("reading");
 return;
 }
+
 if(isOpen){
 clicked.classList.add("expanded");
+document.body.classList.add("reading");
 return;
 }
 
